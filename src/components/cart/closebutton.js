@@ -6,7 +6,7 @@ const CloseButton = (props) => {
       <div style={{ margin: "1px 1px 1rem   34rem" }}>
         {" "}
         <Button
-          onClick={props.onClose}
+          onClick={props.onclosebutton}
           variant="danger"
           as="input"
           size="sm"
