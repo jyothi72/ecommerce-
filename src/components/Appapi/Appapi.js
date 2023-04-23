@@ -1,36 +1,51 @@
-import React, { useState } from 'react'
-
+import React, { useState } from "react";
 
 const Appapi = () => {
-    const[movie,setmovie]=useState([])
-    const[isloading,setisloading]=useState(false)
-    async function fetchmoviehandle(){
-        setisloading(true)
-     const response= await fetch("https://swapi.dev/api/films/") 
-     const data=await response.json()
-        const transformedmovies=data.results.map(movied=>{
-                return{
-                    id:movied_episode_id,
-                    title:movied.title,
-                    opening:movied.opening_crawl
-                }
-            })
-           setmovie(transformedmovies);
-           setisloading(false)
-        }
-    
+  const [movie, setmovie] = useState([]);
+  const [isloading, setisloading] = useState(false);
+  const [error, seterror] = useState(null);
+  async function fetchmoviehandle() {
+    setisloading(true);
+    seterror(null);
+    try {
+      const response = await fetch("https://swapi.dev/api/films/");
+      if (!response.ok) {
+        throw new Error("something is worng");
+      }
+      const data = await response.json();
+
+      const transformedmovies = data.results.map((movied) => {
+        return {
+          id: movied_episode_id,
+          title: movied.title,
+          opening: movied.opening_crawl,
+        };
+      });
+      setmovie(transformedmovies);
+    } catch (error) {
+      seterror(error.message);
+    }
+    setisloading(false);
+  }
+  let content = <p>found no movies</p>;
+  if (movie.length > 0) {
+    content = <moviesList movies={movie} />;
+  }
+  if (error) {
+    content = <p>{error}</p>;
+  }
+  if (isloading) {
+    content = <p>loading....</p>;
+  }
+
   return (
     <React.Fragment>
-        <section>
+      <section>
         <button onClick={fetchmoviehandle}>fetchmovie</button>
-        </section>
-        <section>
-           {!isloading&&movie.length>0 &&<moviesList movies={movie}/>}
-           {!isloading&&movie.length===0&&<p>no movies to show</p>}
-           {isloading&& <p>loading.........</p>}
-        </section>
-         </React.Fragment>
-  )
-}
+      </section>
+      <section>{content}</section>
+    </React.Fragment>
+  );
+};
 
-export default Appapi
+export default Appapi;
