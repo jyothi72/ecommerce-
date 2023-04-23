@@ -3,7 +3,9 @@ import React, { useState } from 'react'
 
 const Appapi = () => {
     const[movie,setmovie]=useState([])
+    const[isloading,setisloading]=useState(false)
     async function fetchmoviehandle(){
+        setisloading(true)
      const response= await fetch("https://swapi.dev/api/films/") 
      const data=await response.json()
         const transformedmovies=data.results.map(movied=>{
@@ -14,6 +16,7 @@ const Appapi = () => {
                 }
             })
            setmovie(transformedmovies);
+           setisloading(false)
         }
     
   return (
@@ -22,7 +25,9 @@ const Appapi = () => {
         <button onClick={fetchmoviehandle}>fetchmovie</button>
         </section>
         <section>
-            <moviesList movies={movie}/>
+           {!isloading&&movie.length>0 &&<moviesList movies={movie}/>}
+           {!isloading&&movie.length===0&&<p>no movies to show</p>}
+           {isloading&& <p>loading.........</p>}
         </section>
          </React.Fragment>
   )
