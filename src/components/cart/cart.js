@@ -2,7 +2,6 @@ import { Card, Button } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import Modal from "../modal/modal";
 import Classes from "./Cart.module.css";
-import CloseButton from "./closebutton";
 import CartHeader from "./cartheader";
 import CartContext from "../context/context";
 const Cart = (props) => {
@@ -81,11 +80,11 @@ const Cart = (props) => {
          PURCHASE
         </Button>
         <Button variant="danger"
-        style={{ margin: " 2rem auto auto 5rem " }}
+        style={{ margin: " 2rem auto auto 2rem " }}
           as="input"
           size="sm"
           type="submit"
-          value="X"onClick={props.onclosebutton}></Button>
+          value="close"onClick={props.onclosebutton}></Button>
        
       </div>
     </Modal>

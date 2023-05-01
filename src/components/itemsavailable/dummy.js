@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../page/header";
+import Headers from "../page/header";
 import Navbar1 from "../page/navbar";
 import Footer from "../page/footer";
 import Cart from "../cart/cart";
@@ -57,8 +57,7 @@ function Store() {
       <CartProvider>
         {cartshow && <Cart onclosebutton={CartHideHandler}></Cart>}
         <Navbar1 onOpenButton={CartshowHandler}></Navbar1>
-        <Header></Header>
-
+        <Headers></Headers>
         <Items Item={productsArr}> </Items>
         <Footer></Footer>
       </CartProvider>
