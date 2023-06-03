@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CartContext from "./context"
+
 const CartProvider = (props) => {
   const [cart, setCart] = useState([]);
   const addItemToCartHandler = (item, index) => {
@@ -30,6 +31,7 @@ const CartProvider = (props) => {
     setCart([...tempArr])
   };
 
+  
   const cartcontext = {
     items: cart,
     incAndDecFun :IncreaseAndDecrease,

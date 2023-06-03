@@ -2,8 +2,12 @@
     color:white;
     background-color:rgb(117, 116, 116);
     margin:0px 0px 0px 0px;
-    padding:15px 50px 20px 300px;
+
     font-size:30px;
+    justify-content: center;
+    display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .headerforabout h1{

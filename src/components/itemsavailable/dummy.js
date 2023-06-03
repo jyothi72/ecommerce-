@@ -1,48 +1,56 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import Headers from "../page/header";
 import Navbar1 from "../page/navbar";
 import Footer from "../page/footer";
 import Cart from "../cart/cart";
 import CartProvider from "../context/context provider";
 import Items from "./imagesgn";
+
 function Store() {
   const [cartshow, setCartShow] = useState(false);
+ 
 
   const productsArr = [
+
+  
     {
-      title: "White Shirt",
+      title: "𝕻𝖆𝖙𝖙𝖊𝖗𝖓 𝖘𝖍𝖎𝖗𝖙",
 
       price: 339,
 
+    id:3,
+
       imageUrl:
-        "https://raw.githubusercontent.com/sonu85336/Building-your-Ecommerce-Website/0c627ee5fb9dc2ff52686dd232ca9539ae5749e8/public/product1of1.jpg",
+        "https://raw.githubusercontent.com/jyothi72/ecommerce-/196fffc895b87c504d58f2188913318189afe24d/src/assets/product1of1.jpg",
     },
 
     {
-      title: "blue and white Shirt",
+      title: "𝖘𝖑𝖎𝖒 𝖋𝖎𝖙 𝖘𝖍𝖎𝖗𝖙",
 
       price: 500,
+      id:6,
 
-      imageUrl:
-        " https://raw.githubusercontent.com/sonu85336/Building-your-Ecommerce-Website/e72ffd882a1145ba9cefa1040220faaa8aed2578/src/assets/productimage/product2of1.jpg",
+      imageUrl:"https://raw.githubusercontent.com/jyothi72/ecommerce-/196fffc895b87c504d58f2188913318189afe24d/src/assets/product2of1.jpg"
     },
 
     {
-      title: " white and Black top",
+      title: "𝖆𝖓𝖆𝖗𝖐𝖆𝖑𝖎 𝖐𝖚𝖗𝖙𝖎",
 
       price: 700,
+      id:4,
 
       imageUrl:
-        "  https://raw.githubusercontent.com/sonu85336/Building-your-Ecommerce-Website/4fdd28af379f9bdab9b71badb2b3c4ef351ada25/prod3of1.jpg",
+        " https://raw.githubusercontent.com/jyothi72/ecommerce-/196fffc895b87c504d58f2188913318189afe24d/src/assets/product3of1.jpg",
     },
 
     {
-      title: "Black Skirt",
+      title: "𝕲𝖎𝖗𝖑𝖘 𝖋𝖗𝖔𝖈𝖐",
 
       price: 900,
+      id:5,
 
       imageUrl:
-        " https://raw.githubusercontent.com/sonu85336/Building-your-Ecommerce-Website/e72ffd882a1145ba9cefa1040220faaa8aed2578/src/assets/productimage/product4of1.jpg",
+        "https://raw.githubusercontent.com/jyothi72/ecommerce-/196fffc895b87c504d58f2188913318189afe24d/src/assets/product4of1.jpg ",
     },
   ];
 

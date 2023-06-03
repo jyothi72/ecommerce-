@@ -1,17 +1,21 @@
 import { useState, useRef, useContext } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import image1 from'../assets/Album 4.png'
 import AuthContext from "./auth-context";
 import { useHistory } from "react-router-dom";
+import classes from'./auth.module.css'
 const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const authCtx = useContext(AuthContext);
   const [isLogin, setIsLogin] = useState(true);
+
   const [isLoading, setIsLoading] = useState(false);
  const history=useHistory()
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
+ 
   const submitHandler = (event) => {
     event.preventDefault();
     const enteredEmail = emailInputRef.current.value;
@@ -51,7 +55,8 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken);
+        console.log('Email',data.email)
+        authCtx.login(data.idToken,data.email);
         history.push('/store')
       })
       .catch((err) => {
@@ -59,39 +64,46 @@ const AuthForm = () => {
       });
   };
   return (
-    <Container>
+    <div
+     className="bg-image" style={{  backgroundImage: 
+      "url('https://unsplash.com/photos/2M1FhJxx0eo')",
+            
+             backgroundSize: 'cover',
+             backgroundRepeat: 'no-repeat',
+         }}>
+    
+    <section className={classes.auth}>
       <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group>
-          <Form.Label>Your Email</Form.Label>
-          <Form.Control type="email" required ref={emailInputRef} />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Your Password</Form.Label>
-          <Form.Control type="password" ref={passwordInputRef} required />
-        </Form.Group>
-        <Row>
-          {!isLoading ? (
-            <Col>
-              <Button variant="primary" type="submit">
-                {isLogin ? "Login" : "Create Account"}
-              </Button>
-            </Col>
-          ) : (
-            <p>Sending request...</p>
-          )}
-          <Col>
-            <Button
-              variant="secondary"
-              type="button"
-              onClick={switchAuthModeHandler}
-            >
-              {isLogin ? "Create new account" : "Login with existing account"}
-            </Button>
-          </Col>
-        </Row>
-      </Form>
-    </Container>
+      <form onSubmit={submitHandler}>
+        <div className={classes.control}>
+          <label htmlFor="email">Your Email</label>
+          <input type="email"  id="email" required ref={emailInputRef}/>
+        </div>
+        <div className={classes.control}>
+          <label htmlFor="password">Your Password</label>
+          <input
+            type="password"
+            id="password"
+            required
+            ref={passwordInputRef}
+          />
+        </div>
+        <div className={classes.actions}>
+        {!isLoading && <button>{isLogin ? "Login" : "Create Account"}</button>} 
+        {isLoading && <p>Sending request...</p>}
+          <button
+            type="button"
+            className={classes.toggle}
+            onClick={switchAuthModeHandler}
+          >
+
+            {isLogin  ? "Create new account" : "Login with existing account"}
+
+          </button>
+        </div>
+      </form>
+    </section>
+    </div>
   );
 };
 export default AuthForm;

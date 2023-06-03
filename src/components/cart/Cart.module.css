@@ -27,10 +27,14 @@
   
   .removeButton {
     margin-left:23px;
+    border-radius: 2px;
   }
   
   .button {
     margin-left:4px;
     background-color:orangered;
-    border:1px  salmon solid
+    border:5px  salmon solid
+
+    
+    
   }
